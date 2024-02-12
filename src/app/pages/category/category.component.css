@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.category {
+  /* border: 1px solid #a57cee; */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 4px;
+  width: 10rem;
+  height: min-content;
+  background: linear-gradient(
+    166deg,
+    rgba(242, 239, 247, 0.349) 0%,
+    rgba(217, 200, 248, 0.76) 100%
+  );
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.mat-h2 {
+  color: #673ab7;
+  font-weight: 600;
+}
+
+ul{
+  display: block;
+  margin-left: -1rem;
+  color: #36454F;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.editBtn{
+  color: #8a8a8a;
+  font-size: 18px;
+}

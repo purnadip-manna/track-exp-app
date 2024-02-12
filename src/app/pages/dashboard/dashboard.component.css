@@ -1,0 +1,75 @@
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  padding: 28px;
+  border-radius: 12px;
+  background: linear-gradient(
+    166deg,
+    rgb(235, 226, 252) 0%,
+    rgb(120 86 179 / 48%) 100%
+  );
+  box-shadow: rgba(14, 30, 37, 0.11) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.11) 0px 2px 16px 0px;
+}
+
+.mat-h1 {
+  margin: 0px 0px 10px 16px;
+  color: #673ab7;
+}
+
+.expense-value {
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-top: 15px !important;
+  color: rgb(29 54 126);
+}
+
+.dashboard-card-content {
+  margin-top: 20px;
+}
+
+.expense-list-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  font-size: 1em;
+  border-radius: 20px;
+  background: rgb(228, 241, 255);
+  font-weight: 500;
+}
+
+.mat-card-title {
+  color: #673ab7;
+  font-size: 20px;
+}
+
+#expense-title {
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+}
+
+#expense-amount {
+  padding: 6px;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px 20px 20px 0px;
+  background-color: #673ab7 !important;
+  color: white;
+  transition: 0.5s;
+}
+
+.btn {
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  font-size: 16px;
+}

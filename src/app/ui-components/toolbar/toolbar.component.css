@@ -1,0 +1,19 @@
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#profilePic {
+  width: 36px;
+  border: 3px solid #a57cee;
+  border-radius: 50%;
+}
+
+.mat-toolbar{
+  background: #550281;
+  color: white;  
+}

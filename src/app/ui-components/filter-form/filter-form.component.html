@@ -1,0 +1,58 @@
+<form [formGroup]="filterForm">
+    <div class="form-container" mat-dialog-content>
+      <h2 mat-dialog-title>Filter</h2>
+      <mat-form-field>
+        <mat-label>From</mat-label>
+        <input
+          matInput
+          [matDatepicker]="frompicker"
+          [max]="maxDate"
+          formControlName="from"
+        />
+        <mat-datepicker-toggle matSuffix [for]="frompicker"> </mat-datepicker-toggle>
+        <mat-datepicker #frompicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>To</mat-label>
+        <input
+          matInput
+          [matDatepicker]="topicker"
+          [max]="maxDate"
+          formControlName="to"
+        />
+        <mat-datepicker-toggle matSuffix [for]="topicker"> </mat-datepicker-toggle>
+        <mat-datepicker #topicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="category">
+          <mat-option value="work">Work</mat-option>
+          <mat-option value="personal">Personal</mat-option>
+        </mat-select>
+        <mat-label>Category</mat-label>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-select formControlName="subcategory">
+          <mat-option value="food">Food</mat-option>
+          <mat-option value="mobile">Mobile</mat-option>
+        </mat-select>
+        <mat-label>Sub-Category</mat-label>
+      </mat-form-field>
+  
+      <div mat-dialog-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          [mat-dialog-close]="filterForm.value"
+        >
+          Save
+        </button>
+        <button mat-raised-button color="error" (click)="onNoClick()">
+          Close
+        </button>
+      </div>
+    </div>
+  </form>
+  

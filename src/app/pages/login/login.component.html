@@ -1,0 +1,63 @@
+<div class="main-container">
+  <form [formGroup]="loginForm" class="form-container">
+    <img src="assets/logo.png" alt="logo" style="width: 8rem" />
+    <h2>Login</h2>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>User Name</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+      </mat-form-field>
+    </p>
+
+    <button mat-raised-button color="primary">Login</button>
+    <br />
+    <p style="color: grey; text-align: center">OR</p>
+    <div style="margin: auto; width: fit-content; margin-top: 20px">
+      <!-- <div
+          id="g_id_onload"
+          data-client_id="558998689593-u8fee52l1ppscdqjoerbsuadvrcp02uo.apps.googleusercontent.com"
+          data-context="signin"
+          data-ux_mode="popup"
+          data-nonce=""
+          data-auto_select="true"
+          data-itp_support="true"
+          data-callback="handleLoginResponse"
+        ></div>
+    
+        <div
+          class="g_id_signin"
+          data-type="standard"
+          data-shape="rectangular"
+          data-theme="outline"
+          data-text="signin_with"
+          data-size="large"
+          data-logo_alignment="left"
+        ></div> -->
+      <div
+        id="g_id_onload"
+        data-client_id="558998689593-u8fee52l1ppscdqjoerbsuadvrcp02uo.apps.googleusercontent.com"
+        data-context="use"
+        data-ux_mode="popup"
+        data-login_uri="http://localhost:8080/api/v1/login/google"
+        data-auto_select="true"
+        data-itp_support="true"
+      ></div>
+
+      <div
+        class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left"
+      ></div>
+    </div>
+  </form>
+</div>

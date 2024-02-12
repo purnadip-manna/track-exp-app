@@ -1,0 +1,79 @@
+<app-loader [loadingStatus]="loading"></app-loader>
+<div class="dashboard-container">
+  <div class="header">
+    <h1>Expenses</h1>
+    <div>
+      <button mat-mini-fab (click)="openFilter()">
+        <mat-icon>filter_alt</mat-icon>
+      </button>
+      &nbsp;
+      <button mat-mini-fab (click)="openForm()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <br />
+  <div class="table-container mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Date:</span>
+          <!-- {{ element.date | date : "dd/MM/yyyy" }} -->
+          {{ showDate(element.date) }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Title:</span>
+          {{ element.title }}</mat-cell>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Category:</span>
+          {{ element.category }}</mat-cell>
+      </ng-container>
+
+      <!-- Sub-Category Column -->
+      <ng-container matColumnDef="subcategory">
+        <mat-header-cell *matHeaderCellDef>Sub-Category</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Sub-Cat:</span>
+          {{ element.subCategory }}</mat-cell>
+      </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Amount:</span>
+          ₹ {{ element.amount | number:'1.2' }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="updateExpense(row)"><mat-icon>edit</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>

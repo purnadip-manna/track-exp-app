@@ -1,0 +1,24 @@
+<app-loader [loadingStatus]="loading"></app-loader>
+<div class="dashboard-container">
+  <div class="header">
+    <h1>Category</h1>
+    <div>
+      <button mat-mini-fab (click)="openForm()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="category-container">
+    <div class="category" *ngFor="let c of category">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span class="mat-h2">{{ c.name }} </span>
+        <button mat-icon-button><mat-icon class="editBtn">edit</mat-icon></button>
+      </div>
+      <ul>
+        <div *ngFor="let sc of c.subCategory">
+          <li>{{ sc }}</li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

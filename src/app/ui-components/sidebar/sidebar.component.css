@@ -1,0 +1,18 @@
+.app-sidenav {
+  width: 200px;
+}
+.app-sidenav-content {
+  padding: 20px;
+  font-size: large;
+  background-color: white;
+  height: inherit;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

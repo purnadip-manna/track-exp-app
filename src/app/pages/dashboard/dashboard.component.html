@@ -1,0 +1,93 @@
+<app-loader [loadingStatus]="loading"></app-loader>
+<div class="grid-container">
+  <h1 class="mat-h1">Hello {{ name }}!</h1>
+  <mat-grid-list
+    [cols]="colNumber"
+    rowHeight="240px"
+    (window:resize)="handelCols($event)"
+  >
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content class="dashboard-card-content">
+          <mat-card-title> Today's Expenses </mat-card-title>
+          <div class="expense-value">
+            ₹ {{ todaysExpense | number : "1.2" }}
+          </div>
+          <br />
+          <mat-card-title> Expenses till Date ({{ monthDict[month] }}) </mat-card-title>
+          <div class="expense-value">₹ {{ expenseTillDate| number : "1.2" }}</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-title> Last 3 Expenses </mat-card-title>
+        <mat-card-content class="dashboard-card-content">
+          <div class="expense-list-grid" *ngFor="let exp of lastThreeExpense">
+            <div id="expense-title">{{ exp.title }}</div>
+            <div id="expense-amount">₹ {{ exp.amount | number : "1.2" }}</div>
+          </div>
+          <div class="expense-list-grid" *ngIf="lastThreeExpense.length === 0">
+            <div id="expense-title">No expense record!</div>
+            <div id="expense-amount"><mat-icon>report_gmailerrorred</mat-icon></div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="card4Rows">
+      <mat-card class="dashboard-card">
+        <mat-card-title> Categories of Expenses </mat-card-title>
+        <br />
+        <mat-card-content
+          class="dashboard-card-content"
+          style="height: 100%; width: 70%; margin: auto"
+        >
+          <canvas id="MyPieChart">{{ chart }}</canvas>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="card4Cols" [rowspan]="card4Rows">
+      <mat-card class="dashboard-card">
+        <mat-card-title> Expense Graph</mat-card-title>
+        <mat-card-content
+          class="dashboard-card-content"
+          style="height: 50vh; width: 50vw; margin: auto"
+        >
+          <br />
+          <canvas id="MyChart">{{ chart }}</canvas>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-title>Select Month & Year</mat-card-title>
+        <mat-card-content class="dashboard-card-content">
+          <div style="display: flex; justify-content: space-between">
+            <mat-form-field appearance="outline" [style]="{ width: '45%' }">
+              <mat-label>Month</mat-label>
+              <mat-select name="month" id="month" [(ngModel)]="month">
+                <mat-option [value]="1" selected>January</mat-option>
+                <mat-option [value]="2">February</mat-option>
+                <mat-option [value]="3">March</mat-option>
+                <mat-option [value]="4">April</mat-option>
+                <mat-option [value]="5">May</mat-option>
+                <mat-option [value]="6">June</mat-option>
+                <mat-option [value]="7">July</mat-option>
+                <mat-option [value]="8">August</mat-option>
+                <mat-option [value]="9">September</mat-option>
+                <mat-option [value]="10">October</mat-option>
+                <mat-option [value]="11">November</mat-option>
+                <mat-option [value]="12">December</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" [style]="{ width: '45%' }">
+              <mat-label>Year</mat-label>
+              <input type="number" matInput [(ngModel)]="year"/>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" (click)="applyMonthYear()">Apply</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
