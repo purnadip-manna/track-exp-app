@@ -18,6 +18,16 @@
     <button mat-raised-button color="primary">Login</button>
     <br />
     <p style="color: grey; text-align: center">OR</p>
-    <asl-google-signin-button *ngIf="!user"></asl-google-signin-button>
+    <p align="center">
+      <asl-google-signin-button
+        *ngIf="!user"
+        type="standard"
+        size="medium"
+        shape="rectangular"
+        text="signin_with"
+        width="200"
+        logo_alignment="center"
+      ></asl-google-signin-button>
+    </p>
   </form>
 </div>
