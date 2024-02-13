@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: any;
-  loggedIn: any;
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(''),
@@ -27,11 +27,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      this.loggedIn = user != null;
       console.log('Login Successful');
       console.log(user);
       this.http
-        .post<any>('http://localhost:8080/api/v1/login/google',{idToken: user.idToken})
+        .post<any>(`${environment.API_URL}/api/v1/login/google`,{idToken: user.idToken})
         .subscribe((data) => {
           const access_token = data.idToken;
           localStorage.setItem('access_token', access_token);
