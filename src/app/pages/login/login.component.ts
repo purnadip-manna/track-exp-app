@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       console.log('Login Successful');
       console.log(user);
       this.http
-        .post<any>(`${environment.API_URL}/api/v1/login/google`,{idToken: user.idToken})
+        .post<any>(`${environment.API_URL}/login/google`,{idToken: user.idToken})
         .subscribe((data) => {
           const access_token = data.idToken;
           localStorage.setItem('access_token', access_token);

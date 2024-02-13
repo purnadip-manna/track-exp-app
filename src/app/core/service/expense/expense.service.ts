@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ExpenseService {
   API_URL: string;
   constructor(private http: HttpClient) {
-    this.API_URL = environment.API_URL+'/api/v1/expense';
+    this.API_URL = environment.API_URL+'/expense';
   }
 
   getExpenses(

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AnalyticsService {
   API_URL: string;
   constructor(private http: HttpClient) {
-    this.API_URL = environment.API_URL+'/api/v1/analytics';
+    this.API_URL = environment.API_URL+'/analytics';
   }
 
   getBarChartData(

@@ -44,6 +44,7 @@ import { ErrorComponent } from './pages/error/error/error.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -103,12 +104,11 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
       provide: 'SocialAuthServiceConfig',
       useValue: {
         autoLogin: false,
-        loginUri: "http://localhost:8080/api/v1/login/google",
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '558998689593-u8fee52l1ppscdqjoerbsuadvrcp02uo.apps.googleusercontent.com'
+              environment.GOOGLE_CLIENT_ID
             )
           }
         ],
