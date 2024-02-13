@@ -4,7 +4,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './core/guard/auth.guard';
-import { LoginCallbackComponent } from './pages/login/login-callback/login-callback.component';
 import { ExpenseComponent } from './pages/expense/expense.component';
 import { SettingComponent } from './pages/setting/setting.component';
 import { ErrorComponent } from './pages/error/error/error.component';
@@ -32,10 +31,6 @@ const routes: Routes = [
   {
     path:'setting',
     component:SettingComponent
-  },
-  {
-    path:'loginCallback',
-    component:LoginCallbackComponent
   },
   {
     path: 'error',

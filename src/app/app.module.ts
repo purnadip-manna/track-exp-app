@@ -42,6 +42,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { RequestInterceptor } from './core/interceptor/request.interceptor';
 import { ErrorComponent } from './pages/error/error/error.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,10 +91,31 @@ import { ErrorComponent } from './pages/error/error/error.component';
     LayoutModule,
     HttpClientModule,
     MatChipsModule,
+    SocialLoginModule
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        loginUri: "http://localhost:8080/api/v1/login/google",
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '558998689593-u8fee52l1ppscdqjoerbsuadvrcp02uo.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
     }
   ],
   bootstrap: [AppComponent],
