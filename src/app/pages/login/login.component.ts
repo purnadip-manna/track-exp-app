@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      console.log('Login Successful');
-      console.log(user);
       this.http
         .post<any>(`${environment.API_URL}/login/google`,{idToken: user.idToken})
         .subscribe((data) => {
