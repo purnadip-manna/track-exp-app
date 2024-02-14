@@ -29,7 +29,7 @@ export class ExpenseService {
     return this.http.post(this.API_URL, data);
   }
 
-  updateExpense(data:Expense, expenseId:string):Observable<any>{
+  updateExpense(expenseId:string, data:Expense):Observable<any>{
     return this.http.put(`${this.API_URL}/${expenseId}`, data);
   }
 

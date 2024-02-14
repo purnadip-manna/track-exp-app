@@ -85,7 +85,7 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.expenseService
-          .updateExpense(result, data.id)
+          .updateExpense(data.id, result)
           .subscribe((res) => this.loadData());
       }
     });
