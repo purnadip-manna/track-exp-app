@@ -12,7 +12,9 @@
     <div class="category" *ngFor="let c of category">
       <div style="display: flex; justify-content: space-between; align-items: baseline;">
         <span class="mat-h2">{{ c.name }} </span>
-        <button mat-icon-button><mat-icon class="editBtn">edit</mat-icon></button>
+        <button mat-icon-button (click)="openEditForm(c)">
+          <mat-icon class="editBtn">edit</mat-icon>
+        </button>
       </div>
       <ul>
         <div *ngFor="let sc of c.subCategory">

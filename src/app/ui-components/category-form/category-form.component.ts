@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import Category from 'src/app/types/Category';
 
 @Component({
   selector: 'app-category-form',
@@ -10,6 +11,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
   styleUrls: ['./category-form.component.css']
 })
 export class CategoryFormComponent implements OnInit {
+  @Input() fromParent!: Category;
+
   visible = true;
   selectable = true;
   removable = true;
@@ -18,12 +21,17 @@ export class CategoryFormComponent implements OnInit {
 
   public maxDate = new Date();
   categoryForm:FormGroup = new FormGroup({
+    // id: new FormControl(''),
     name: new FormControl(''),
     subCategory: new FormControl([])
   });
   constructor(public dialogRef: MatDialogRef<CategoryFormComponent>) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.fromParent) {
+      this.categoryForm.patchValue(this.fromParent);
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

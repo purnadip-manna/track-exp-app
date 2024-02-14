@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
 import { CategoryService } from 'src/app/core/service/category/category.service';
+import Category from 'src/app/types/Category';
 import { CategoryFormComponent } from 'src/app/ui-components/category-form/category-form.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { CategoryFormComponent } from 'src/app/ui-components/category-form/categ
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  category: any;
+  category!: Category[];
   loading: boolean = true;
 
   constructor(
@@ -35,5 +36,18 @@ export class CategoryComponent implements OnInit {
           .subscribe((data) => console.log(data));
       }
     });
+  }
+
+  openEditForm(data: Category){   
+    const dialogRef = this.dialog.open(CategoryFormComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {        
+        this.categoryService
+          .updateCategory(data.id, result)
+          .subscribe((data) => console.log(data));
+      }
+    });
+    dialogRef.componentInstance.fromParent = data;
   }
 }
