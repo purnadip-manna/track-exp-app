@@ -17,14 +17,14 @@ export class CategoryComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private categoryService: CategoryService
-  ) {
-    categoryService
+  ) {}
+
+  ngOnInit(): void {
+    this.categoryService
       .getCategories()
       .pipe(finalize(() => (this.loading = false)))
       .subscribe((data) => (this.category = data));
   }
-
-  ngOnInit(): void {}
 
   openForm() {
     const dialogRef = this.dialog.open(CategoryFormComponent);
@@ -33,7 +33,7 @@ export class CategoryComponent implements OnInit {
       if (result) {
         this.categoryService
           .saveCategory(result)
-          .subscribe((data) => console.log(data));
+          .subscribe((res) => this.ngOnInit());
       }
     });
   }
