@@ -45,7 +45,7 @@ export class CategoryComponent implements OnInit {
       if (result) {        
         this.categoryService
           .updateCategory(data.id, result)
-          .subscribe((data) => console.log(data));
+          .subscribe((res) => this.ngOnInit());
       }
     });
     dialogRef.componentInstance.fromParent = data;

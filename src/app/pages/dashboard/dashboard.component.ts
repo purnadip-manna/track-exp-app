@@ -55,9 +55,7 @@ export class DashboardComponent implements OnInit {
         ? 'Guest'
         : localStorage.getItem('name')?.split(' ')[0] + '';
   }
-  ngOnInit(): void {
-    console.log(this.month);
-    
+  ngOnInit(): void {    
     let today = moment();
 
     zip(
