@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import {
@@ -8,6 +8,7 @@ import {
 } from "@angular/material/core";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { DatePipe } from "@angular/common";
+import Category from 'src/app/types/Category';
 
 
 export const MY_FORMATS = {
@@ -38,13 +39,15 @@ export const MY_FORMATS = {
   ]
 })
 export class FilterFormComponent implements OnInit {
+  @Input() categories: Category[] = [];
+  subCategories: string[] = [];
 
   public maxDate = new Date();
   filterForm:FormGroup = new FormGroup({
     from: new FormControl(''),
     to: new FormControl(''),
     category: new FormControl(''),
-    subcategory: new FormControl('')
+    subCategory: new FormControl('')
   });
 
 
@@ -55,6 +58,11 @@ export class FilterFormComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  setSubCategory(cat: any) {
+    let x = this.categories.filter((c) => c.name === cat);
+    this.subCategories = x[0].subCategory;
   }
 
 }

@@ -43,3 +43,8 @@
     padding: 0 !important;
   }
 }
+
+.footer{
+  margin-top: 2rem;
+  font-weight: 600;
+}

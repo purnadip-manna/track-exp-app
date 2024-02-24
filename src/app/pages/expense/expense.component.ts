@@ -75,8 +75,16 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(FilterFormComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      if (result) {
+        this.loading = true;
+        this.expenseService
+          .filterExpense(result)
+          .pipe(finalize(() => (this.loading = false)))
+          .subscribe((data) => (this.dataSource.data = data));
+      }
     });
+
+    dialogRef.componentInstance.categories = this.categories;
   }
 
   updateExpense(data: Expense) {
@@ -99,5 +107,11 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
       .utc(date)
       .utcOffset(moment(date).utcOffset())
       .format('DD-MM-yyyy');
+  }
+
+  getTotalAmount():number{
+    let total = 0;
+    this.dataSource.data.forEach(d => total += d.amount)
+    return total;
   }
 }

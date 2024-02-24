@@ -26,17 +26,22 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select formControlName="category">
-          <mat-option value="work">Work</mat-option>
-          <mat-option value="personal">Personal</mat-option>
+        <mat-select formControlName="category" (valueChange)="setSubCategory($event)">
+          <mat-option
+          *ngFor="let category of categories"
+          value="{{ category.name }}"
+        >
+          {{ category.name }}
+        </mat-option>
         </mat-select>
         <mat-label>Category</mat-label>
       </mat-form-field>
   
-      <mat-form-field>
-        <mat-select formControlName="subcategory">
-          <mat-option value="food">Food</mat-option>
-          <mat-option value="mobile">Mobile</mat-option>
+      <mat-form-field *ngIf="subCategories.length !== 0">
+        <mat-select formControlName="subCategory">
+          <mat-option *ngFor="let sc of subCategories" value="{{ sc }}">
+            {{ sc }}
+          </mat-option>
         </mat-select>
         <mat-label>Sub-Category</mat-label>
       </mat-form-field>
@@ -47,7 +52,7 @@
           color="primary"
           [mat-dialog-close]="filterForm.value"
         >
-          Save
+          Apply
         </button>
         <button mat-raised-button color="error" (click)="onNoClick()">
           Close
