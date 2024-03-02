@@ -42,7 +42,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { RequestInterceptor } from './core/interceptor/request.interceptor';
 import { ErrorComponent } from './pages/error/error/error.component';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -95,11 +98,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatChipsModule,
     SocialLoginModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+      enabled: environment.production,
+    }),
   ],
   providers: [
     {
@@ -114,16 +114,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              environment.GOOGLE_CLIENT_ID
-            )
-          }
+            provider: new GoogleLoginProvider(environment.GOOGLE_CLIENT_ID),
+          },
         ],
         onError: (err) => {
           console.error(err);
-        }
+        },
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })
