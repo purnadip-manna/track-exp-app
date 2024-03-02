@@ -17,3 +17,8 @@ a {
   background: #550281;
   color: white;  
 }
+
+#logo{
+  width: 10rem;
+  margin-top: 8px;
+}

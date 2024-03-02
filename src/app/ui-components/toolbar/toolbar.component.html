@@ -2,7 +2,7 @@
   <button mat-icon-button matTooltip="Menu" (click)="toggle()" *ngIf="auth.isLoggedIn()">
     <mat-icon>menu</mat-icon>
   </button>
-  <a routerLink="/">{{ appTitle }}</a>
+  <a routerLink="/"><img src="assets/logo-white.png" alt="{{appTitle}}" id="logo"></a>
   <span class="toolbar-item-spacer"></span>
   <div *ngIf="auth.isLoggedIn()">
     <button
