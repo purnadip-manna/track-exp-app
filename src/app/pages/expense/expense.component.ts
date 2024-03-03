@@ -31,6 +31,8 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
 
   loading: boolean = true;
   categories: Category[] = [];
+  fromDate: any;
+  toDate: any;
 
   constructor(
     public dialog: MatDialog,
@@ -49,9 +51,11 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  loadData(): void {
-    let from = moment().set('date', 1).set('month', 0);
+  loadData(): void {    
     let to = moment();
+    let from = moment().set('date', 1).set('month', to.month());
+    this.fromDate = from.format("Do MMM, yyyy");
+    this.toDate = to.format("Do MMM, yyyy");
     this.expenseService
       .getExpenses(from.format('yyyy-MM-DD'), to.format('yyyy-MM-DD'))
       .pipe(finalize(() => (this.loading = false)))
@@ -77,6 +81,8 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loading = true;
+        this.fromDate = result.from.format("Do MMM, yyyy");
+        this.toDate = result.to.format("Do MMM, yyyy");
         this.expenseService
           .filterExpense(result)
           .pipe(finalize(() => (this.loading = false)))

@@ -5,7 +5,6 @@ import { CategoryComponent } from './pages/category/category.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { ExpenseComponent } from './pages/expense/expense.component';
-import { SettingComponent } from './pages/setting/setting.component';
 import { ErrorComponent } from './pages/error/error/error.component';
 
 const routes: Routes = [
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
-  },
-  {
-    path:'setting',
-    component:SettingComponent
   },
   {
     path: 'error',

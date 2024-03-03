@@ -37,7 +37,6 @@ import { LoaderComponent } from './ui-components/loader/loader.component';
 import { FilterFormComponent } from './ui-components/filter-form/filter-form.component';
 import { CategoryFormComponent } from './ui-components/category-form/category-form.component';
 import { ThemeComponent } from './ui-components/theme/theme.component';
-import { SettingComponent } from './pages/setting/setting.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { RequestInterceptor } from './core/interceptor/request.interceptor';
 import { ErrorComponent } from './pages/error/error/error.component';
@@ -64,7 +63,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     FilterFormComponent,
     CategoryFormComponent,
     ThemeComponent,
-    SettingComponent,
     ErrorComponent,
   ],
   imports: [

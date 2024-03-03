@@ -1,5 +1,5 @@
-<toolbar [appTitle]="title" (sidebarOpenEvent)="sidebarOpen=!sidebarOpen"></toolbar> 
-<div *ngIf="auth.isLoggedIn()">
-    <sidebar [components]="components" [sidebarOpen]="sidebarOpen"></sidebar>
-</div>
-<router-outlet></router-outlet>
+<toolbar
+  [appTitle]="title"
+  (sidebarOpenEvent)="sidebarOpen = !sidebarOpen"
+></toolbar>
+<sidebar [components]="components" [sidebarOpen]="sidebarOpen"></sidebar>

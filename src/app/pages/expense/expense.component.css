@@ -10,7 +10,7 @@
   min-width: 300px;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   font-size: 14px;
 }
 
@@ -39,12 +39,21 @@
     align-items: start;
     padding: 8px 24px;
   }
-  .mat-cell:first-of-type{
+  .mat-cell:first-of-type {
     padding: 0 !important;
   }
 }
 
-.footer{
+.footer {
   margin-top: 2rem;
   font-weight: 600;
+}
+
+.pill-badge {
+  padding: 6px 12px 6px 12px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  font-size: 0.8em;
+  border-radius: 20px;
+  background: rgb(228, 241, 255);
+  font-weight: 500;
 }

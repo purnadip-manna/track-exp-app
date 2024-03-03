@@ -27,11 +27,6 @@ export class AppComponent implements OnInit {
       path: '/category',
       icon: 'dashboard',
     },
-    {
-      title: 'Setting',
-      path: '/setting',
-      icon: 'settings',
-    },
   ];
 
   constructor(public auth: AuthService) {
