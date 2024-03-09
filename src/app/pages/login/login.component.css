@@ -16,11 +16,3 @@
 asl-google-signin-button {
   padding-top: 20px;
 }
-
-@media screen and (max-width: 480px) {
-  asl-google-signin-button {
-    padding-top: 20px;
-    position: fixed;
-    bottom: 84px;
-  }
-}
