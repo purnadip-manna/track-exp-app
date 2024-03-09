@@ -1,33 +1,15 @@
-<div class="main-container">
-  <form [formGroup]="loginForm" class="form-container">
-    <img src="assets/logo.png" alt="logo" style="width: 12rem" />
-    <h2>Login</h2>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>User Name</mat-label>
-        <input matInput formControlName="username" />
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password" />
-      </mat-form-field>
-    </p>
-
-    <button mat-raised-button color="primary">Login</button>
-    <br />
-    <p style="color: grey; text-align: center">OR</p>
-    <p align="center">
-      <asl-google-signin-button
-        *ngIf="!user"
-        type="standard"
-        size="medium"
-        shape="rectangular"
-        text="signin_with"
-        width="200"
-        logo_alignment="center"
-      ></asl-google-signin-button>
-    </p>
-  </form>
+<div class="container">
+  <h1 class="large-text">Track Your expense with</h1>
+  <div>
+    <img src="assets/logo.png" alt="logo" id="logo" />
+  </div>
+  <asl-google-signin-button
+    *ngIf="!user"
+    type="standard"
+    size="large"
+    shape="circle"
+    text="signin_with"
+    width="300"
+    logo_alignment="center"
+  ></asl-google-signin-button>
 </div>

@@ -1,7 +1,6 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -12,11 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
   user: any;
-
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
 
   constructor(
     private authService: SocialAuthService,

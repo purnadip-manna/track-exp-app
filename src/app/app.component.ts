@@ -8,8 +8,6 @@ import { AuthService } from './core/service/auth/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title: string = 'Track EXPenses';
-  sidebarOpen: boolean = false;
   isLoggedIn: any = localStorage.getItem('isLoggedIn');
   components: SidebarComponentType[] = [
     {

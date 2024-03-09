@@ -1,3 +1,9 @@
+<div *ngIf="auth.isLoggedIn()">
+  <toolbar
+    [appTitle]="title"
+    (sidebarOpenEvent)="sidebarOpen = !sidebarOpen"
+  ></toolbar>
+</div>
 <mat-sidenav-container class="app-container">
   <mat-sidenav
     mode="over"

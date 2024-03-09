@@ -1,10 +1,6 @@
 import { Component, Input } from '@angular/core';
 import SidebarComponentType from '../../types/SidebarComponentType';
-
-interface Category {
-  name: string;
-  subcategory: string[];
-}
+import { AuthService } from 'src/app/core/service/auth/auth.service';
 
 @Component({
   selector: 'sidebar',
@@ -12,11 +8,12 @@ interface Category {
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
+  title: string = 'Track EXPenses';
   name: string = '';
   @Input() components!: SidebarComponentType[];
-  @Input() sidebarOpen: boolean = true;
+  sidebarOpen: boolean = false;
 
-  constructor(){}
+  constructor(public auth:AuthService){}
 
   closeSidebar():void{
     this.sidebarOpen = false;
