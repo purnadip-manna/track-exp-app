@@ -1,18 +1,22 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-direction: column;
+  height: 100vh;
+  gap: 8px;
 }
 .large-text {
-  font-size: 4em;
-  line-height: 1.2;
-  padding-top: 20px;
+  font-size: 1.4em;
+}
+
+.para {
+  width: 22em;
+  font-size: 14px;
+  text-align: justify;
+  margin-bottom: 16px;
+  font-style: italic;
 }
 
 #logo {
   width: 18em;
-}
-asl-google-signin-button {
-  padding-top: 20px;
 }
