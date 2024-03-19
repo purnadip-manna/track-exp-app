@@ -38,7 +38,7 @@ export class RequestInterceptor implements HttpInterceptor {
             this.router.navigateByUrl('/error?id=4');
             break;
           default:
-            this.router.navigateByUrl('/error');
+            this.router.navigateByUrl('/error?id=x');
             break;
         }
         return throwError(err);
