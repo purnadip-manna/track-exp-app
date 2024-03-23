@@ -43,16 +43,17 @@ export class ExpenseFormComponent implements OnInit {
   subCategories: string[];
   public maxDate = new Date();
   expenseForm: FormGroup = new FormGroup({
-    date: new FormControl(moment(), Validators.required),
+    date: new FormControl(
+      moment().set('hour', 0).set('minute', 0).set('second', 0),
+      Validators.required
+    ),
     title: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
     subCategory: new FormControl(''),
     amount: new FormControl('', Validators.required),
   });
 
-  constructor(
-    public dialogRef: MatDialogRef<ExpenseFormComponent>
-  ) {
+  constructor(public dialogRef: MatDialogRef<ExpenseFormComponent>) {
     this.categories = [];
     this.subCategories = [];
   }
