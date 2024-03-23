@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import * as moment from 'moment';
 import { finalize, zip } from 'rxjs';
@@ -19,7 +20,7 @@ export class DashboardComponent implements OnInit {
   card4Rows: number = 2;
   chart: any;
   chart2: any;
-  month: number = moment().month()+1;
+  month: number = moment().month() + 1;
   year: number = moment().year();
 
   lastThreeExpense: Expense[] = [];
@@ -46,6 +47,7 @@ export class DashboardComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private expenseService: ExpenseService,
     private analyticsService: AnalyticsService
   ) {
@@ -55,7 +57,7 @@ export class DashboardComponent implements OnInit {
         ? 'Guest'
         : localStorage.getItem('name')?.split(' ')[0] + '';
   }
-  ngOnInit(): void {    
+  ngOnInit(): void {
     let today = moment();
 
     zip(
@@ -102,12 +104,10 @@ export class DashboardComponent implements OnInit {
           this.pieChartLabel.push(obj.label);
           this.pieChartData.push(obj.totalAmount);
         });
-
       });
   }
 
   createChart() {
-
     const data1 = {
       // values on X-Axis
       labels: this.barChartLabel,
@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
         },
       ],
     };
-  
+
     const data2 = {
       labels: this.pieChartLabel,
       datasets: [
@@ -190,5 +190,13 @@ export class DashboardComponent implements OnInit {
 
   applyMonthYear() {
     this.ngOnInit();
+  }
+
+  openForm() {
+    this.router.navigate(['/expenses'], {
+      queryParams: {
+        openForm: true,
+      },
+    });
   }
 }

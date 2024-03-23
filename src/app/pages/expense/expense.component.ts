@@ -2,8 +2,9 @@ import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { finalize } from 'rxjs';
+import { finalize, switchMap, tap } from 'rxjs';
 import { CategoryService } from 'src/app/core/service/category/category.service';
 import { ExpenseService } from 'src/app/core/service/expense/expense.service';
 import Category from 'src/app/types/Category';
@@ -35,6 +36,7 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   toDate: any;
 
   constructor(
+    private route: ActivatedRoute,
     public dialog: MatDialog,
     private expenseService: ExpenseService,
     private categoryService: CategoryService
@@ -43,19 +45,24 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.categoryService
-      .getCategories()
-      .subscribe((c) => (this.categories = c));
+    this.categoryService.getCategories().pipe(
+      tap((c) => this.categories = c),
+      switchMap(() => this.route.queryParams)
+    ).subscribe((param) => {
+      if (param['openForm']) {
+        this.openForm();
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  loadData(): void {    
+  loadData(): void {
     let to = moment();
     let from = moment().set('date', 1).set('month', to.month());
-    this.fromDate = from.format("Do MMM, yyyy");
-    this.toDate = to.format("Do MMM, yyyy");
+    this.fromDate = from.format('Do MMM, yyyy');
+    this.toDate = to.format('Do MMM, yyyy');
     this.expenseService
       .getExpenses(from.format('yyyy-MM-DD'), to.format('yyyy-MM-DD'))
       .pipe(finalize(() => (this.loading = false)))
@@ -81,8 +88,8 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loading = true;
-        this.fromDate = result.from.format("Do MMM, yyyy");
-        this.toDate = result.to.format("Do MMM, yyyy");
+        this.fromDate = result.from.format('Do MMM, yyyy');
+        this.toDate = result.to.format('Do MMM, yyyy');
         this.expenseService
           .filterExpense(result)
           .pipe(finalize(() => (this.loading = false)))
@@ -115,9 +122,9 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
       .format('DD-MM-yyyy');
   }
 
-  getTotalAmount():number{
+  getTotalAmount(): number {
     let total = 0;
-    this.dataSource.data.forEach(d => total += d.amount)
+    this.dataSource.data.forEach((d) => (total += d.amount));
     return total;
   }
 }

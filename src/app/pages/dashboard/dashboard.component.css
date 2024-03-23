@@ -73,3 +73,10 @@
 .btn:hover {
   font-size: 16px;
 }
+
+#add-expense-btn{
+  position: fixed;
+  right: 28px;
+  bottom: 36px;
+  z-index: 100;
+}
