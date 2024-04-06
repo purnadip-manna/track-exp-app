@@ -2,6 +2,7 @@
     <div style="margin: 10px; margin-bottom: 10vh;">
         <router-outlet></router-outlet>
     </div>
+    <div style="margin: 10vh;">footer</div>
     <div *ngIf="auth.isLoggedIn()">
         <app-toolbar [components]="components"></app-toolbar>
     </div>

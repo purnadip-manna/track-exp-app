@@ -53,6 +53,10 @@
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 20px;
+  width: -webkit-fill-available;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #expense-amount {
@@ -63,6 +67,10 @@
   background-color: #673ab7 !important;
   color: white;
   transition: 0.5s;
+  width: 8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .btn {
