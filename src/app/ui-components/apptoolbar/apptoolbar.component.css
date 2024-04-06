@@ -4,7 +4,7 @@ mat-toolbar {
   bottom: 0;
   justify-content: space-between;
   z-index: 1000;
-  height: 10%;
+  height: 8%;
   box-shadow: rgba(0, 0, 0, 0.15) -2px -3px 3px;
 }
 
@@ -17,6 +17,9 @@ mat-list-item {
   font-size: 32px;
   height: 32px;
   width: 32px;
+}
+
+.active{
   color: #550281;
 }
 
@@ -26,7 +29,9 @@ mat-list-item {
 }
 
 .item-list-title{
-    font-size: 16px;
-    margin-bottom: 10px;
-    margin-top: -10px;
+  font-size: 8px;
+  margin-bottom: 8px;
+  margin-top: -16px;
+  display: flex;
+  justify-content: center;
 }

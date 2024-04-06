@@ -1,14 +1,29 @@
 <mat-toolbar>
   <mat-nav-list *ngFor="let c of components">
     <div class="flex">
-        <mat-list-item
-          routerLink="{{ c.path }}"
+      <mat-list-item routerLink="{{ c.path }}">
+        <mat-icon
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >{{ c.icon }}</mat-icon
         >
-          <mat-icon>{{ c.icon }}</mat-icon>
-        </mat-list-item>
-        <div class="item-list-title">
-            {{ c.title }}
-        </div>
+      </mat-list-item>
+      <a
+        routerLink="{{ c.path }}"
+        class="item-list-title"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ c.title }}
+      </a>
+    </div>
+  </mat-nav-list>
+  <mat-nav-list>
+    <div class="flex">
+      <mat-list-item>
+        <mat-icon>account_circle</mat-icon>
+      </mat-list-item>
+      <div class="item-list-title">Profile</div>
     </div>
   </mat-nav-list>
 </mat-toolbar>
