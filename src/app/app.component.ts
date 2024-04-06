@@ -1,6 +1,7 @@
 import { Component, HostBinding, ElementRef, OnInit } from '@angular/core';
 import SidebarComponentType from './types/SidebarComponentType';
 import { AuthService } from './core/service/auth/auth.service';
+import { ApplicationStateService } from './core/service/application-state/application-state.service';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +28,10 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  constructor(public auth: AuthService) {
-  }
+  constructor(
+    public auth: AuthService,
+    public platform: ApplicationStateService
+  ) {}
 
-  ngOnInit(){}
+  ngOnInit() {}
 }

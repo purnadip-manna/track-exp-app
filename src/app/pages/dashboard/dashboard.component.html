@@ -1,7 +1,7 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="grid-container">
   <h1 class="mat-h1">Hello {{ name }}!</h1>
-  <button id="add-expense-btn" mat-fab (click)="openForm()">
+  <button id="add-expense-btn" mat-mini-fab (click)="openForm()" *ngIf="platform.getIsMobileResolution()">
     <mat-icon>add</mat-icon>
   </button>
   <mat-grid-list

@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <mat-nav-list *ngFor="let c of components">
+    <div class="flex">
+        <mat-list-item
+          routerLink="{{ c.path }}"
+        >
+          <mat-icon>{{ c.icon }}</mat-icon>
+        </mat-list-item>
+        <div class="item-list-title">
+            {{ c.title }}
+        </div>
+    </div>
+  </mat-nav-list>
+</mat-toolbar>

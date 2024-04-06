@@ -77,6 +77,6 @@
 #add-expense-btn{
   position: fixed;
   right: 28px;
-  bottom: 36px;
+  bottom: 96px;
   z-index: 100;
 }

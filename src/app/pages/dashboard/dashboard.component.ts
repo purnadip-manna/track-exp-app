@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import * as moment from 'moment';
 import { finalize, zip } from 'rxjs';
+import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
 import { AnalyticsService } from 'src/app/core/service/expense/analytics.service';
 import { ExpenseService } from 'src/app/core/service/expense/expense.service';
 import Expense from 'src/app/types/Expense';
@@ -49,7 +50,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private expenseService: ExpenseService,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    public platform: ApplicationStateService
   ) {
     this.handelCols();
     this.name =

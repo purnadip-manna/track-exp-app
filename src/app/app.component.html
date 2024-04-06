@@ -1,1 +1,9 @@
-<sidebar [components]="components"></sidebar>
+<div *ngIf="platform.getIsMobileResolution(); else webview">
+    <div style="margin: 10px;">
+        <router-outlet></router-outlet>
+    </div>
+    <app-toolbar [components]="components"></app-toolbar>
+</div>
+<ng-template #webview>
+    <sidebar [components]="components"></sidebar>
+</ng-template>

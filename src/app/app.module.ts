@@ -48,6 +48,7 @@ import {
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ApptoolbarComponent } from './ui-components/apptoolbar/apptoolbar.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     SidebarComponent,
     DashboardComponent,
     ExpenseFormComponent,
+    ApptoolbarComponent,
     ToolbarComponent,
     CategoryComponent,
     LoginComponent,
