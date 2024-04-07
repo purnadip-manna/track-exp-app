@@ -68,6 +68,7 @@
   color: white;
   transition: 0.5s;
   width: 8rem;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -82,9 +83,26 @@
   font-size: 16px;
 }
 
-#add-expense-btn{
+#add-expense-btn {
   position: fixed;
   right: 28px;
   bottom: 96px;
   z-index: 100;
+}
+
+#logo {
+  width: 12rem;
+  margin: 10px;
+}
+
+.mobile-card {
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-section-heading{
+  display: block;
+  text-align: center;
+  margin: 16px;
 }

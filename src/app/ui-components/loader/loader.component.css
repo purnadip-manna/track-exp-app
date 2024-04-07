@@ -13,7 +13,7 @@
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  --c:no-repeat linear-gradient(#ffd740 0 0);
+  --c:no-repeat linear-gradient(rgb(185, 145, 254) 0 0);
   background: 
     var(--c),var(--c),var(--c),
     var(--c),var(--c),var(--c),
