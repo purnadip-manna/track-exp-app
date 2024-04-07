@@ -2,9 +2,8 @@ import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { finalize, switchMap, tap } from 'rxjs';
+import { finalize } from 'rxjs';
 import { CategoryService } from 'src/app/core/service/category/category.service';
 import { ExpenseService } from 'src/app/core/service/expense/expense.service';
 import Category from 'src/app/types/Category';
@@ -36,7 +35,6 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   toDate: any;
 
   constructor(
-    private route: ActivatedRoute,
     public dialog: MatDialog,
     private expenseService: ExpenseService,
     private categoryService: CategoryService
@@ -45,14 +43,9 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories().pipe(
-      tap((c) => this.categories = c),
-      switchMap(() => this.route.queryParams)
-    ).subscribe((param) => {
-      if (param['openForm']) {
-        this.openForm();
-      }
-    });
+    this.categoryService
+      .getCategories()
+      .subscribe((c) => (this.categories = c));
   }
 
   ngAfterViewInit() {

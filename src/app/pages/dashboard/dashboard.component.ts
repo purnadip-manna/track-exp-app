@@ -142,6 +142,19 @@ export class DashboardComponent implements OnInit {
       type: 'bar', //this denotes tha type of chart
       data: data1,
       options: {
+        scales: {
+          x:{
+            grid: {
+              drawOnChartArea: false
+            }
+          },
+          y:{
+            grid: {
+              drawOnChartArea: false
+            },
+            display: !this.platform.getIsMobileResolution()
+          },
+        },
         aspectRatio: 2,
         responsive: true,
         plugins: {
@@ -192,13 +205,5 @@ export class DashboardComponent implements OnInit {
 
   applyMonthYear() {
     this.ngOnInit();
-  }
-
-  openForm() {
-    this.router.navigate(['/expenses'], {
-      queryParams: {
-        openForm: true,
-      },
-    });
   }
 }

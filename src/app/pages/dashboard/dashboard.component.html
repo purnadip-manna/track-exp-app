@@ -3,9 +3,6 @@
   class="mobile-container"
   *ngIf="platform.getIsMobileResolution(); else webview"
 >
-  <button id="add-expense-btn" mat-mini-fab (click)="openForm()">
-    <mat-icon>add</mat-icon>
-  </button>
   <div
     style="
       display: flex;
@@ -42,6 +39,17 @@
     <div id="expense-title">{{ exp.title }}</div>
     <div id="expense-amount">₹ {{ exp.amount | number : "1.2" }}</div>
   </div>
+  <div class="mobile-section-heading">Expense Graph</div>
+
+  <mat-card class="mobile-card">
+    <canvas id="MyChart">{{ chart }}</canvas>
+  </mat-card>
+
+  <div class="mobile-section-heading">Categories of Expenses</div>
+
+  <mat-card class="mobile-card">
+    <canvas id="MyPieChart">{{ chart }}</canvas>
+  </mat-card>
 </div>
 <ng-template #webview>
   <div class="grid-container">
