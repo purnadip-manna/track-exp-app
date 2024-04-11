@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { finalize } from 'rxjs';
+import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
 import { CategoryService } from 'src/app/core/service/category/category.service';
 import { ExpenseService } from 'src/app/core/service/expense/expense.service';
 import Category from 'src/app/types/Category';
@@ -37,7 +38,8 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private expenseService: ExpenseService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    public platform: ApplicationStateService
   ) {
     this.loadData();
   }

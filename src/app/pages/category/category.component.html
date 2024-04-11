@@ -1,12 +1,10 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="dashboard-container">
+  <button mat-fab class="add-btn" (click)="openForm()">
+    <mat-icon>add</mat-icon>
+  </button>
   <div class="header">
     <h1>Category</h1>
-    <div>
-      <button mat-mini-fab (click)="openForm()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
   </div>
   <div class="category-container">
     <div class="category" *ngFor="let c of category">

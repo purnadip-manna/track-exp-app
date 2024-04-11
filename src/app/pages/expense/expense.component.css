@@ -58,3 +58,16 @@
   background: rgb(228, 241, 255);
   font-weight: 500;
 }
+
+.add-btn{
+  position: fixed;
+  bottom: 108px;
+  z-index: 2000;
+  right: 28px;
+}
+
+.mobile-section-heading{
+  position: relative;
+  margin-top: 16px;
+  text-align: center;
+}

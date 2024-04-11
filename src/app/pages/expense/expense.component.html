@@ -1,20 +1,27 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="dashboard-container">
+  <button mat-fab (click)="openForm()" class="add-btn">
+    <mat-icon>add</mat-icon>
+  </button>
   <div class="header">
     <h1>Expenses</h1>
     <div>
-      <button mat-mini-fab (click)="openFilter()">
+      <span>FILTER</span>
+      <button mat-icon-button (click)="openFilter()">
         <mat-icon>filter_alt</mat-icon>
-      </button>
-      &nbsp;
-      <button mat-mini-fab (click)="openForm()">
-        <mat-icon>add</mat-icon>
       </button>
     </div>
   </div>
-  <span class="pill-badge">{{ fromDate }} - {{ toDate }} </span>
-  <br>
-  <br>
+  <span
+    class="pill-badge"
+    *ngIf="!platform.getIsMobileResolution(); else mobileDateDetails"
+    >{{ fromDate }} - {{ toDate }}
+  </span>
+  <ng-template #mobileDateDetails>
+    <div class="mobile-section-heading">{{ fromDate }} - {{ toDate }}</div>
+  </ng-template>
+  <br />
+  <br />
   <div class="table-container mat-elevation-z8">
     <mat-table [dataSource]="dataSource">
       <!-- Date Column -->
