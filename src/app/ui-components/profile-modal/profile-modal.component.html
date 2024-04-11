@@ -1,0 +1,12 @@
+<h2 mat-dialog-title align="center">Profile</h2>
+<mat-dialog-content>
+  <p align="center">
+    <img [src]="profilePic" [alt]="name" class="profilePic"/> <br />
+    {{ name }} <br />
+    {{ email }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions style="justify-content: center">
+  <button mat-raised-button color="warn" (click)="handleLogout()">Log Out</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="onNoClick()">Close</button>
+</mat-dialog-actions>
