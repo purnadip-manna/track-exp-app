@@ -1,12 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
 
 @Component({
   selector: 'app-profile-modal',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
+  imports: [MatDialogModule, MatButtonModule, CommonModule],
   templateUrl: './profile-modal.component.html',
   styleUrls: ['./profile-modal.component.css']
 })
@@ -17,6 +19,7 @@ export class ProfileModalComponent {
 
   constructor(
     private router: Router,
+    public platform: ApplicationStateService,
     public dialogRef: MatDialogRef<ProfileModalComponent>
   ) {}
 

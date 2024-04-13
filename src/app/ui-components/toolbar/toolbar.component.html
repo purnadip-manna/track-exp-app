@@ -14,7 +14,7 @@
       
     </button>
     <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-      <button mat-menu-item routerLink="#">
+      <button mat-menu-item (click)="openProfile()">
         <mat-icon>person</mat-icon><span>{{ name === null ? "Guest" : name }}</span>
       </button>
       <mat-divider></mat-divider>

@@ -6,7 +6,7 @@
     {{ email }}
   </p>
 </mat-dialog-content>
-<mat-dialog-actions style="justify-content: center">
+<mat-dialog-actions style="justify-content: center" *ngIf="platform.getIsMobileResolution()">
   <button mat-raised-button color="warn" (click)="handleLogout()">Log Out</button>
   <button mat-raised-button color="primary" cdkFocusInitial (click)="onNoClick()">Close</button>
 </mat-dialog-actions>
