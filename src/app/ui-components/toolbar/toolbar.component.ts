@@ -1,16 +1,31 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/service/auth/auth.service';
+import { AuthService } from '../../core/service/auth/auth.service';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 declare var handleSignOut: any;
 
 @Component({
   selector: 'toolbar',
+  standalone: true,
+  imports: [
+    MatTooltipModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+  ],
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css'],
+  styleUrl: './toolbar.component.scss',
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
   @Input() appTitle!: string;
   @Output() sidebarOpenEvent = new EventEmitter<boolean>();
 
@@ -22,8 +37,6 @@ export class ToolbarComponent implements OnInit {
     public auth: AuthService,
     public dialog: MatDialog
   ) {}
-
-  ngOnInit(): void {}
 
   toggle() {
     this.sidebarOpenEvent.emit(true);

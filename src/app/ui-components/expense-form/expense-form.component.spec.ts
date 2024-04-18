@@ -8,10 +8,10 @@ describe('ExpenseFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpenseFormComponent ]
+      imports: [ExpenseFormComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(ExpenseFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

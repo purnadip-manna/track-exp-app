@@ -1,12 +1,15 @@
-<div *ngIf="platform.getIsMobileResolution(); else webview">
-    <div style="margin: 10px; margin-bottom: 10vh;">
-        <router-outlet></router-outlet>
-    </div>
-    <div style="margin: 10vh;">&nbsp;</div>
-    <div *ngIf="auth.isLoggedIn()">
-        <app-toolbar [components]="components"></app-toolbar>
-    </div>
+@if (platform.getIsMobileResolution()) {
+<div>
+  <div style="margin: 10px; margin-bottom: 10vh">
+    <router-outlet></router-outlet>
+  </div>
+  <div style="margin: 10vh">&nbsp;</div>
+  @if (auth.isLoggedIn()) {
+  <div>
+    <app-toolbar [components]="components"></app-toolbar>
+  </div>
+  }
 </div>
-<ng-template #webview>
-    <sidebar [components]="components"></sidebar>
-</ng-template>
+} @else {
+<sidebar [components]="components"></sidebar>
+}

@@ -1,19 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import Chart from 'chart.js/auto';
-import * as moment from 'moment';
+import { Component } from '@angular/core';
+import moment from 'moment';
+import Expense from '../../types/Expense';
+import { ExpenseService } from '../../core/service/expense/expense.service';
+import { AnalyticsService } from '../../core/service/expense/analytics.service';
+import { ApplicationStateService } from '../../core/service/application-state/application-state.service';
 import { finalize, zip } from 'rxjs';
-import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
-import { AnalyticsService } from 'src/app/core/service/expense/analytics.service';
-import { ExpenseService } from 'src/app/core/service/expense/expense.service';
-import Expense from 'src/app/types/Expense';
+import { Chart } from 'chart.js/auto';
+import { LoaderComponent } from '../../ui-components/loader/loader.component';
+import {MatCardModule} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
+  imports: [
+    CommonModule,
+    LoaderComponent,
+    MatCardModule,
+    MatIconModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule
+  ],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   loading: boolean = true;
   name: string = '';
   colNumber: number = 3;
@@ -23,7 +45,6 @@ export class DashboardComponent implements OnInit {
   chart2: any;
   month: number = moment().month() + 1;
   year: number = moment().year();
-
   lastThreeExpense: Expense[] = [];
   todaysExpense: number = 0.0;
   expenseTillDate: number = 0.0;
@@ -48,7 +69,6 @@ export class DashboardComponent implements OnInit {
   };
 
   constructor(
-    private router: Router,
     private expenseService: ExpenseService,
     private analyticsService: AnalyticsService,
     public platform: ApplicationStateService
@@ -59,6 +79,7 @@ export class DashboardComponent implements OnInit {
         ? 'Guest'
         : localStorage.getItem('name')?.split(' ')[0] + '';
   }
+
   ngOnInit(): void {
     let today = moment();
 
@@ -143,16 +164,16 @@ export class DashboardComponent implements OnInit {
       data: data1,
       options: {
         scales: {
-          x:{
+          x: {
             grid: {
-              drawOnChartArea: false
-            }
-          },
-          y:{
-            grid: {
-              drawOnChartArea: false
+              drawOnChartArea: false,
             },
-            display: !this.platform.getIsMobileResolution()
+          },
+          y: {
+            grid: {
+              drawOnChartArea: false,
+            },
+            display: !this.platform.getIsMobileResolution(),
           },
         },
         aspectRatio: 2,

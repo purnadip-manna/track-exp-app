@@ -1,6 +1,6 @@
 {
-  "name": "TrackEXP",
-  "short_name": "TrackEXP",
+  "name": "track-exp",
+  "short_name": "track-exp",
   "theme_color": "#550281",
   "background_color": "#fafafa",
   "display": "standalone",

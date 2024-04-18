@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import Category from '../../types/Category';
 import { MatDialog } from '@angular/material/dialog';
+import { CategoryService } from '../../core/service/category/category.service';
 import { finalize } from 'rxjs';
-import { CategoryService } from 'src/app/core/service/category/category.service';
-import Category from 'src/app/types/Category';
-import { CategoryFormComponent } from 'src/app/ui-components/category-form/category-form.component';
+import { CategoryFormComponent } from '../../ui-components/category-form/category-form.component';
+import { LoaderComponent } from '../../ui-components/loader/loader.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-category',
+  standalone: true,
+  imports: [
+    LoaderComponent,
+    MatIcon,
+    MatButtonModule
+  ],
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css'],
+  styleUrl: './category.component.scss',
 })
 export class CategoryComponent implements OnInit {
   category!: Category[];
@@ -38,11 +47,11 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  openEditForm(data: Category){   
+  openEditForm(data: Category) {
     const dialogRef = this.dialog.open(CategoryFormComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {        
+      if (result) {
         this.categoryService
           .updateCategory(data.id, result)
           .subscribe((res) => this.ngOnInit());

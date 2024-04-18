@@ -1,21 +1,35 @@
-import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import Expense from '../../types/Expense';
+import Category from '../../types/Category';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import * as moment from 'moment';
+import { ExpenseService } from '../../core/service/expense/expense.service';
+import { CategoryService } from '../../core/service/category/category.service';
+import { ApplicationStateService } from '../../core/service/application-state/application-state.service';
+import moment from 'moment';
 import { finalize } from 'rxjs';
-import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
-import { CategoryService } from 'src/app/core/service/category/category.service';
-import { ExpenseService } from 'src/app/core/service/expense/expense.service';
-import Category from 'src/app/types/Category';
-import Expense from 'src/app/types/Expense';
-import { ExpenseFormComponent } from 'src/app/ui-components/expense-form/expense-form.component';
-import { FilterFormComponent } from 'src/app/ui-components/filter-form/filter-form.component';
+import { ExpenseFormComponent } from '../../ui-components/expense-form/expense-form.component';
+import { FilterFormComponent } from '../../ui-components/filter-form/filter-form.component';
+
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { LoaderComponent } from '../../ui-components/loader/loader.component';
+import { MatIcon } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-expense',
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    LoaderComponent,
+    MatIcon,
+    MatTableModule,
+    MatPaginator,
+    CommonModule,
+  ],
   templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.css'],
+  styleUrl: './expense.component.scss',
 })
 export class ExpenseComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [

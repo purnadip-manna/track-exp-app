@@ -1,22 +1,21 @@
 <form [formGroup]="categoryForm">
-  <div class="form-container" mat-dialog-content>
-    <h2 mat-dialog-title>Add New Category</h2>
-
-    <mat-form-field>
+  <div class="form-container">
+    <h2 mat-dialog-title align="center">Add New Category</h2>
+    <br>
+    <mat-form-field appearance="outline">
       <mat-label>Category Name</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
-    <mat-form-field class="example-chip-list">
-      <mat-chip-list #chipList>
-        <mat-chip
-          *ngFor="let sc of categoryForm.get('subCategory')?.value"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="removeSubCategory(sc)"
-        >
+    <mat-form-field class="example-chip-list" appearance="outline">
+      <mat-chip-grid #chipList>
+        @for (sc of categoryForm.get('subCategory')?.value; track sc) {
+        <mat-chip-row [removable]="removable" (removed)="removeSubCategory(sc)">
           {{ sc }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
+          @if (removable) {
+          <mat-icon matChipRemove>cancel</mat-icon>
+          }
+        </mat-chip-row>
+        }
         <input
           placeholder="New Sub-Category..."
           [matChipInputFor]="chipList"
@@ -24,7 +23,7 @@
           [matChipInputAddOnBlur]="addOnBlur"
           (matChipInputTokenEnd)="addSubCategory($event)"
         />
-      </mat-chip-list>
+      </mat-chip-grid>
       <mat-hint>Enter a sub-category and put a comma</mat-hint>
     </mat-form-field>
 
@@ -36,7 +35,7 @@
       >
         Save
       </button>
-      <button mat-raised-button color="error" (click)="onNoClick()">
+      <button mat-raised-button color="warn" (click)="onNoClick()">
         Close
       </button>
     </div>

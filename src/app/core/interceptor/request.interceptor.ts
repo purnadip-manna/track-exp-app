@@ -1,48 +1,45 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { inject } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
-@Injectable()
-export class RequestInterceptor implements HttpInterceptor {
+import { HttpInterceptorFn } from '@angular/common/http';
 
-  constructor(private router: Router) {}
+export const requestInterceptor: HttpInterceptorFn = (req, next) => {
+  const router = inject(Router);
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      request = request.clone({
-        headers: request.headers
-          .set('Authorization', 'Bearer ' + token)
-      });
-    }
-    return next.handle(request).pipe(
-      catchError(err => {
-        switch(err.status){
-          case 400:
-            this.router.navigateByUrl('/error?id=0');
-            break;
-          case 401:
-            localStorage.clear();
-            this.router.navigateByUrl('/login');
-            break;
-          case 403:
-            this.router.navigateByUrl('/error?id=3');
-            break;
-          case 404:
-            this.router.navigateByUrl('/error?id=4');
-            break;
-          default:
-            this.router.navigateByUrl('/error?id=x');
-            break;
-        }
-        return throwError(err);
-      })
-    );
+  const authToken = localStorage.getItem('access_token');
+
+  let authReq: any = req;
+
+  if (authToken) {
+    authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
   }
-}
+
+  return next(authReq).pipe(
+    catchError((err) => {      
+      switch (err.status) {
+        case 400:
+          router.navigateByUrl('/error?id=0');
+          break;
+        case 401:
+          localStorage.clear();
+          router.navigateByUrl('/login');
+          break;
+        case 403:
+          router.navigateByUrl('/error?id=3');
+          break;
+        case 404:
+          router.navigateByUrl('/error?id=4');
+          break;
+        default:
+          router.navigateByUrl('/error?id=x');
+          break;
+      }
+      return throwError(err);
+    })
+  );
+};

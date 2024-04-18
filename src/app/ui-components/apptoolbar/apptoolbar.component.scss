@@ -11,6 +11,7 @@ mat-toolbar {
 mat-list-item {
   display: flex !important;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .mat-icon {
@@ -19,7 +20,7 @@ mat-list-item {
   width: 28px;
 }
 
-.active{
+.active {
   color: #550281;
 }
 
@@ -28,10 +29,14 @@ mat-list-item {
   flex-direction: column;
 }
 
-.item-list-title{
+.item-list-title {
   font-size: 8px;
   margin-bottom: 8px;
   margin-top: -16px;
   display: flex;
   justify-content: center;
+}
+
+a{
+    text-decoration: none;
 }

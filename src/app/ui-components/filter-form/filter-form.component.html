@@ -1,63 +1,70 @@
 <form [formGroup]="filterForm">
-    <div class="form-container" mat-dialog-content>
-      <h2 mat-dialog-title>Filter</h2>
-      <mat-form-field>
-        <mat-label>From</mat-label>
-        <input
-          matInput
-          [matDatepicker]="frompicker"
-          [max]="maxDate"
-          formControlName="from"
-        />
-        <mat-datepicker-toggle matSuffix [for]="frompicker"> </mat-datepicker-toggle>
-        <mat-datepicker #frompicker></mat-datepicker>
-      </mat-form-field>
+  <div class="form-container">
+    <h2 mat-dialog-title>Filter</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>From</mat-label>
+      <input
+        matInput
+        [matDatepicker]="frompicker"
+        [max]="maxDate"
+        formControlName="from"
+      />
+      <mat-datepicker-toggle matSuffix [for]="frompicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #frompicker></mat-datepicker>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>To</mat-label>
-        <input
-          matInput
-          [matDatepicker]="topicker"
-          [max]="maxDate"
-          formControlName="to"
-        />
-        <mat-datepicker-toggle matSuffix [for]="topicker"> </mat-datepicker-toggle>
-        <mat-datepicker #topicker></mat-datepicker>
-      </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>To</mat-label>
+      <input
+        matInput
+        [matDatepicker]="topicker"
+        [max]="maxDate"
+        formControlName="to"
+      />
+      <mat-datepicker-toggle matSuffix [for]="topicker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #topicker></mat-datepicker>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-select formControlName="category" (valueChange)="setSubCategory($event)">
-          <mat-option
-          *ngFor="let category of categories"
-          value="{{ category.name }}"
-        >
+    <mat-form-field appearance="outline">
+      <mat-select
+        formControlName="category"
+        (valueChange)="setSubCategory($event)"
+      >
+        @for (category of categories; track category) {
+        <mat-option value="{{ category.name }}">
           {{ category.name }}
         </mat-option>
-        </mat-select>
-        <mat-label>Category</mat-label>
-      </mat-form-field>
-  
-      <mat-form-field *ngIf="subCategories.length !== 0">
-        <mat-select formControlName="subCategory">
-          <mat-option *ngFor="let sc of subCategories" value="{{ sc }}">
-            {{ sc }}
-          </mat-option>
-        </mat-select>
-        <mat-label>Sub-Category</mat-label>
-      </mat-form-field>
-  
-      <div mat-dialog-actions>
-        <button
-          mat-raised-button
-          color="primary"
-          [mat-dialog-close]="filterForm.value"
-        >
-          Apply
-        </button>
-        <button mat-raised-button color="error" (click)="onNoClick()">
-          Close
-        </button>
-      </div>
+        }
+      </mat-select>
+      <mat-label>Category</mat-label>
+    </mat-form-field>
+
+    @if (subCategories.length !== 0) {
+    <mat-form-field appearance="outline">
+      <mat-select formControlName="subCategory">
+        @for (sc of subCategories; track sc) {
+        <mat-option value="{{ sc }}">
+          {{ sc }}
+        </mat-option>
+        }
+      </mat-select>
+      <mat-label>Sub-Category</mat-label>
+    </mat-form-field>
+    }
+
+    <div mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        [mat-dialog-close]="filterForm.value"
+      >
+        Apply
+      </button>
+      <button mat-raised-button color="warn" (click)="onNoClick()">
+        Close
+      </button>
     </div>
-  </form>
-  
+  </div>
+</form>

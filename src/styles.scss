@@ -1,0 +1,38 @@
+@use "@angular/material" as mat;
+@use "@angular/material-experimental" as matx;
+
+$theme: matx.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: matx.$m3-violet-palette,
+      tertiary: matx.$m3-blue-palette,
+    ),
+  )
+);
+
+@include mat.core();
+@include matx.color-variants-back-compat($theme);
+
+:root {
+  @include mat.all-component-themes($theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", "Helvetica Neue", sans-serif !important;
+}
+
+.mat-drawer-container {
+  background-color: white !important;
+}
+
+.mat-h1 {
+  color: #673ab7;
+  font-family: "Poppins", "Helvetica Neue", sans-serif !important;
+  font-weight: 600;
+}

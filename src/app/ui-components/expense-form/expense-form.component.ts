@@ -1,15 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import {
-  DateAdapter,
-  MAT_DATE_LOCALE,
-  MAT_DATE_FORMATS,
-} from '@angular/material/core';
+import { Component, Input, OnInit } from '@angular/core';
+import Expense from '../../types/Expense';
+import Category from '../../types/Category';
+import moment from 'moment';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import Category from 'src/app/types/Category';
-import * as moment from 'moment';
-import Expense from 'src/app/types/Expense';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 export const MY_FORMATS = {
   parse: {
@@ -25,8 +26,20 @@ export const MY_FORMATS = {
 
 @Component({
   selector: 'app-expense-form',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatLabel,
+    MatSelectModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatButtonModule
+  ],
   templateUrl: './expense-form.component.html',
-  styleUrls: ['./expense-form.component.css'],
+  styleUrl: './expense-form.component.scss',
   providers: [
     {
       provide: DateAdapter,
@@ -34,7 +47,7 @@ export const MY_FORMATS = {
       deps: [MAT_DATE_LOCALE],
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ],
+  ]
 })
 export class ExpenseFormComponent implements OnInit {
   @Input() fromParent!: Expense;

@@ -1,26 +1,31 @@
 <mat-toolbar>
-  <button mat-icon-button matTooltip="Menu" (click)="toggle()" *ngIf="auth.isLoggedIn()">
+  @if (auth.isLoggedIn()) {
+  <button mat-icon-button matTooltip="Menu" (click)="toggle()" style="color: whitesmoke;">
     <mat-icon>menu</mat-icon>
   </button>
-  <a routerLink="/"><img src="assets/logo-white.png" alt="{{appTitle}}" id="logo"></a>
+  }
+  <a routerLink="/"
+    ><img src="assets/logo-white.png" alt="{{ appTitle }}" id="logo"
+  /></a>
   <span class="toolbar-item-spacer"></span>
-  <div *ngIf="auth.isLoggedIn()">
-    <button
-      mat-icon-button
+  @if (auth.isLoggedIn()) {
+  <div>
+    <img
       matTooltip="My Account"
       [matMenuTriggerFor]="userAccountMenu"
-    >
-    <img src="{{pictureUrl}}" id="profilePic">
-      
-    </button>
+      src="{{ pictureUrl }}"
+      id="profilePic"
+    />
     <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
       <button mat-menu-item (click)="openProfile()">
-        <mat-icon>person</mat-icon><span>{{ name === null ? "Guest" : name }}</span>
+        <mat-icon>person</mat-icon
+        ><span>{{ name === null ? "Guest" : name }}</span>
       </button>
       <mat-divider></mat-divider>
       <button mat-menu-item (click)="handleLogout()">
         <mat-icon>exit_to_app</mat-icon>Logout
-      </button>        
+      </button>
     </mat-menu>
   </div>
+  }
 </mat-toolbar>

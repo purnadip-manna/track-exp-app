@@ -8,10 +8,10 @@ describe('FilterFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterFormComponent ]
+      imports: [FilterFormComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(FilterFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

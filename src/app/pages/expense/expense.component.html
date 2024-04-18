@@ -1,28 +1,31 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="dashboard-container">
-  <button mat-fab (click)="openForm()" class="add-btn">
-    <mat-icon>add</mat-icon>
-  </button>
+  @if (platform.getIsMobileResolution()) {
+    <button mat-fab (click)="openForm()" class="add-btn" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  }
   <div class="header">
-    <h1>Expenses</h1>
+    <h1 class="mat-h1">Expenses</h1>
     <div>
-      <button mat-mini-fab (click)="openForm()">
+      @if (!platform.getIsMobileResolution()) {
+      <button mat-raised-button (click)="openForm()">
+        <span>ADD</span>
         <mat-icon>add</mat-icon>
       </button>
+      &nbsp; }
+
       <button mat-raised-button (click)="openFilter()">
         <span>FILTER</span>
         <mat-icon>filter_alt</mat-icon>
       </button>
     </div>
   </div>
-  <span
-    class="pill-badge"
-    *ngIf="!platform.getIsMobileResolution(); else mobileDateDetails"
-    >{{ fromDate }} - {{ toDate }}
-  </span>
-  <ng-template #mobileDateDetails>
-    <div class="mobile-section-heading">{{ fromDate }} - {{ toDate }}</div>
-  </ng-template>
+  @if (!platform.getIsMobileResolution()) {
+  <span class="pill-badge">{{ fromDate }} - {{ toDate }} </span>
+  } @else {
+  <div class="mobile-section-heading">{{ fromDate }} - {{ toDate }}</div>
+  }
   <br />
   <br />
   <div class="table-container mat-elevation-z8">
@@ -76,9 +79,16 @@
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button (click)="updateExpense(row)">
-            <mat-icon>edit</mat-icon>
-          </button>
+          @if (platform.getIsMobileResolution()) {
+            <button mat-raised-button (click)="updateExpense(row)">
+              EDIT <mat-icon>edit</mat-icon>
+            </button>
+          }
+          @else {
+            <button mat-icon-button (click)="updateExpense(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          }
         </mat-cell>
       </ng-container>
 

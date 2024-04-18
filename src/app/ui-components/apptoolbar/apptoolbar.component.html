@@ -1,5 +1,6 @@
 <mat-toolbar>
-  <mat-nav-list *ngFor="let c of components">
+  @for (c of components; track c) {
+  <mat-nav-list>
     <div class="flex">
       <mat-list-item routerLink="{{ c.path }}">
         <mat-icon
@@ -18,6 +19,7 @@
       </a>
     </div>
   </mat-nav-list>
+  }
   <mat-nav-list>
     <div class="flex" (click)="openDialog()">
       <mat-list-item>

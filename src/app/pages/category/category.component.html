@@ -1,24 +1,34 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="dashboard-container">
-  <button mat-fab class="add-btn" (click)="openForm()">
+  <button mat-fab class="add-btn" (click)="openForm()" color="primary">
     <mat-icon>add</mat-icon>
   </button>
   <div class="header">
-    <h1>Category</h1>
+    <h1 class="mat-h1">Category</h1>
   </div>
   <div class="category-container">
-    <div class="category" *ngFor="let c of category">
-      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+    @for (c of category; track c) {
+    <div class="category">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+        "
+      >
         <span class="mat-h2">{{ c.name }} </span>
         <button mat-icon-button (click)="openEditForm(c)">
           <mat-icon class="editBtn">edit</mat-icon>
         </button>
       </div>
       <ul>
-        <div *ngFor="let sc of c.subCategory">
+        @for (sc of c.subCategory; track sc) {
+        <div>
           <li>{{ sc }}</li>
         </div>
+        }
       </ul>
     </div>
+    }
   </div>
 </div>

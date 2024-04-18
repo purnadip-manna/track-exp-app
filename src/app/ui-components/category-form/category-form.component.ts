@@ -1,14 +1,34 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import Category from '../../types/Category';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import Category from 'src/app/types/Category';
+import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-category-form',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatLabel,
+    MatSelectModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatIcon
+  ],
   templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.css']
+  styleUrl: './category-form.component.scss',
 })
 export class CategoryFormComponent implements OnInit {
   @Input() fromParent!: Category;
@@ -20,12 +40,12 @@ export class CategoryFormComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   public maxDate = new Date();
-  categoryForm:FormGroup = new FormGroup({
+  categoryForm: FormGroup = new FormGroup({
     // id: new FormControl(''),
     name: new FormControl(''),
-    subCategory: new FormControl([])
+    subCategory: new FormControl([]),
   });
-  constructor(public dialogRef: MatDialogRef<CategoryFormComponent>) { }
+  constructor(public dialogRef: MatDialogRef<CategoryFormComponent>) {}
 
   ngOnInit(): void {
     if (this.fromParent) {
@@ -51,7 +71,7 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
-  removeSubCategory(sc:string): void {
+  removeSubCategory(sc: string): void {
     const index = this.categoryForm.get('subCategory')?.value.indexOf(sc);
 
     if (index >= 0) {

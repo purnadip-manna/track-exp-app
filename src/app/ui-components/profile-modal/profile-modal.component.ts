@@ -1,21 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ApplicationStateService } from 'src/app/core/service/application-state/application-state.service';
+import { ApplicationStateService } from '../../core/service/application-state/application-state.service';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile-modal',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, CommonModule],
+  imports: [MatDialogModule, MatButton, MatIcon],
   templateUrl: './profile-modal.component.html',
-  styleUrls: ['./profile-modal.component.css']
+  styleUrl: './profile-modal.component.scss',
 })
 export class ProfileModalComponent {
-  profilePic: any = localStorage.getItem("picture");
-  name: any = localStorage.getItem("name");
-  email: any = localStorage.getItem("email");
+  profilePic: any = localStorage.getItem('picture');
+  name: any = localStorage.getItem('name');
+  email: any = localStorage.getItem('email');
 
   constructor(
     private router: Router,
@@ -23,14 +23,9 @@ export class ProfileModalComponent {
     public dialogRef: MatDialogRef<ProfileModalComponent>
   ) {}
 
-  onNoClick(): void {
+  handleLogout() {
     this.dialogRef.close();
-  }
-
-  handleLogout(){
-    this.onNoClick();
     localStorage.clear();
-    this.router.navigate(['/login']).then(()=>window.location.reload())
+    this.router.navigate(['/login']).then(() => window.location.reload());
   }
 }
-

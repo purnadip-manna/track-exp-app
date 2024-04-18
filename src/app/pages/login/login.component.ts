@@ -1,17 +1,21 @@
-import { SocialAuthService } from '@abacritt/angularx-social-login';
+import {
+  GoogleSigninButtonModule,
+  SocialAuthService,
+} from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [GoogleSigninButtonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   user: any;
-
   constructor(
     private authService: SocialAuthService,
     private http: HttpClient,
@@ -20,9 +24,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
-      this.user = user;
+      this.user = user;      
       this.http
-        .post<any>(`${environment.API_URL}/login/google`,{idToken: user.idToken})
+        .post<any>(`${environment.API_URL}/login/google`, {
+          idToken: user.idToken,
+        })
         .subscribe((data) => {
           const access_token = data.idToken;
           localStorage.setItem('access_token', access_token);

@@ -3,17 +3,20 @@
     <img src="assets/logo.png" alt="logo" id="logo" />
   </div>
   <h1 class="large-text">Spy on your Spending 👀</h1>
+  @if (!user) {
   <asl-google-signin-button
-    *ngIf="!user"
     type="standard"
     size="large"
     shape="circle"
     text="signin_with"
-    width="300"
+    [width]="300"
     logo_alignment="center"
   ></asl-google-signin-button>
-  <img src="assets/wallet.png" style="width: 18em">
+  }
+  <img src="assets/wallet.png" style="width: 18em" />
   <div class="para">
-    Effortlessly manage your expenses with our intuitive application, providing seamless tracking and insightful analytics to help you stay on top of your finances.
+    Effortlessly manage your expenses with our intuitive application, providing
+    seamless tracking and insightful analytics to help you stay on top of your
+    finances.
   </div>
 </div>

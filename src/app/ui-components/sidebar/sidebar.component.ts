@@ -1,11 +1,24 @@
 import { Component, Input } from '@angular/core';
 import SidebarComponentType from '../../types/SidebarComponentType';
-import { AuthService } from 'src/app/core/service/auth/auth.service';
+import { AuthService } from '../../core/service/auth/auth.service';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'sidebar',
+  standalone: true,
+  imports: [
+    RouterModule,
+    ToolbarComponent,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+  ],
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   title: string = 'Track EXPenses';
@@ -13,9 +26,9 @@ export class SidebarComponent {
   @Input() components!: SidebarComponentType[];
   sidebarOpen: boolean = false;
 
-  constructor(public auth:AuthService){}
+  constructor(public auth: AuthService) {}
 
-  closeSidebar():void{
+  closeSidebar(): void {
     this.sidebarOpen = false;
   }
 }

@@ -1,3 +1,5 @@
-<div id="loader-wrapper" *ngIf="loadingStatus">
+@if (loadingStatus) {
+<div id="loader-wrapper">
   <div id="loader" class="loader"></div>
 </div>
+}

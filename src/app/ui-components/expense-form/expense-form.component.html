@@ -1,9 +1,10 @@
 <form [formGroup]="expenseForm">
-  <div class="form-container" mat-dialog-content>
-    <h2 mat-dialog-title>
-      {{ fromParent ? fromParent.title+" (Edit)" : "Add New Expense" }}
+  <div class="form-container">
+    <h2 mat-dialog-title align="center">
+      {{ fromParent ? fromParent.title + " (Edit)" : "Add New Expense" }}
     </h2>
-    <mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
       <mat-label>Choose a date</mat-label>
       <input
         matInput
@@ -15,43 +16,46 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Expense Title</mat-label>
       <input matInput formControlName="title" />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-select
         formControlName="category"
         (valueChange)="setSubCategory($event)"
       >
-        <mat-option
-          *ngFor="let category of categories"
-          value="{{ category.name }}"
-        >
+        @for (category of categories; track category) {
+        <mat-option value="{{ category.name }}">
           {{ category.name }}
         </mat-option>
+        }
       </mat-select>
       <mat-label>Category</mat-label>
     </mat-form-field>
-    <mat-form-field *ngIf="subCategories.length !== 0">
+    @if (subCategories.length !== 0) {
+    <mat-form-field appearance="outline">
       <mat-select formControlName="subCategory">
-        <mat-option *ngFor="let sc of subCategories" value="{{ sc }}">
+        @for (sc of subCategories; track sc) {
+        <mat-option value="{{ sc }}">
           {{ sc }}
         </mat-option>
+        }
       </mat-select>
       <mat-label>Sub-Category</mat-label>
     </mat-form-field>
+    }
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
       <input
         matInput
-        placeholder="Amount"
         type="number"
         class="amount-field"
         formControlName="amount"
       />
-      <span matPrefix>₹&nbsp;</span>
+      <span matPrefix>&nbsp;₹&nbsp;</span>
     </mat-form-field>
     <div mat-dialog-actions>
       <button
@@ -62,7 +66,7 @@
       >
         Save
       </button>
-      <button mat-raised-button color="error" (click)="onNoClick()">
+      <button mat-raised-button color="warn" (click)="onNoClick()">
         Close
       </button>
     </div>

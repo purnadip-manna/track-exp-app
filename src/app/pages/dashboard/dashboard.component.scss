@@ -1,3 +1,6 @@
+html, body{
+  font-family: 'Poppins' !important;
+}
 .dashboard-card {
   position: absolute;
   top: 15px;
@@ -15,20 +18,14 @@
     rgba(14, 30, 37, 0.11) 0px 2px 16px 0px;
 }
 
-.mat-h1 {
-  margin: 0px 0px 10px 16px;
-  color: #673ab7;
+.mat-h1{
+  margin: 0px 0px 0px 16px;
 }
 
 .expense-value {
   font-weight: 600;
   font-size: 1.4em;
-  margin-top: 15px !important;
   color: rgb(29 54 126);
-}
-
-.dashboard-card-content {
-  margin-top: 20px;
 }
 
 .expense-list-grid {
@@ -43,9 +40,11 @@
   font-weight: 500;
 }
 
-.mat-card-title {
+mat-card-title {
   color: #673ab7;
   font-size: 20px;
+  margin-bottom: 12px;
+  font-family: 'Poppins' !important;
 }
 
 #expense-title {
@@ -74,22 +73,6 @@
   overflow: hidden;
 }
 
-.btn {
-  border-radius: 16px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  font-size: 16px;
-}
-
-#add-expense-btn {
-  position: fixed;
-  right: 28px;
-  bottom: 96px;
-  z-index: 100;
-}
-
 #logo {
   width: 12rem;
   margin: 10px;
@@ -101,8 +84,8 @@
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-.mobile-section-heading:before{
-  content:" ";
+.mobile-section-heading:before {
+  content: " ";
   display: block;
   height: 1px;
   width: 28%;
@@ -112,14 +95,14 @@
   background: #00000036;
 }
 
-.mobile-section-heading{
+.mobile-section-heading {
   position: relative;
   margin: 16px auto;
   text-align: center;
 }
 
-.mobile-section-heading:after{
-  content:" ";
+.mobile-section-heading:after {
+  content: " ";
   height: 1px;
   width: 28%;
   background: #00000036;
@@ -128,4 +111,3 @@
   top: 50%;
   right: 0;
 }
-
