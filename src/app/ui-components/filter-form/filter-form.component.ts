@@ -65,17 +65,12 @@ export class FilterFormComponent {
     from: new FormControl(''),
     to: new FormControl(''),
     category: new FormControl(''),
-    subCategory: new FormControl(''),
+    tag: new FormControl(''),
   });
 
   constructor(public dialogRef: MatDialogRef<FilterFormComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  setSubCategory(cat: any) {
-    let x = this.categories.filter((c) => c.name === cat);
-    this.subCategories = x[0].subCategory;
   }
 }

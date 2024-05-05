@@ -62,7 +62,7 @@ export class ExpenseFormComponent implements OnInit {
     ),
     title: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
-    subCategory: new FormControl(''),
+    tag: new FormControl(''),
     amount: new FormControl('', Validators.required),
   });
 
@@ -74,16 +74,10 @@ export class ExpenseFormComponent implements OnInit {
   ngOnInit(): void {
     if (this.fromParent) {
       this.expenseForm.patchValue(this.fromParent);
-      this.setSubCategory(this.fromParent.category);
     }
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  setSubCategory(cat: any) {
-    let x = this.categories.filter((c) => c.name === cat);
-    this.subCategories = x[0].subCategory;
   }
 }

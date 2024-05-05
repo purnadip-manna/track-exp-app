@@ -24,7 +24,6 @@
     <mat-form-field appearance="outline">
       <mat-select
         formControlName="category"
-        (valueChange)="setSubCategory($event)"
       >
         @for (category of categories; track category) {
         <mat-option value="{{ category.name }}">
@@ -34,18 +33,11 @@
       </mat-select>
       <mat-label>Category</mat-label>
     </mat-form-field>
-    @if (subCategories.length !== 0) {
+
     <mat-form-field appearance="outline">
-      <mat-select formControlName="subCategory">
-        @for (sc of subCategories; track sc) {
-        <mat-option value="{{ sc }}">
-          {{ sc }}
-        </mat-option>
-        }
-      </mat-select>
-      <mat-label>Sub-Category</mat-label>
+      <mat-label>Tag</mat-label>
+      <input matInput formControlName="tag" />
     </mat-form-field>
-    }
 
     <mat-form-field appearance="outline">
         <mat-label>Amount</mat-label>

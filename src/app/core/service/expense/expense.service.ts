@@ -39,7 +39,7 @@ export class ExpenseService {
       this.API_URL
     }/query?from=${expenseQuery.from.format("YYYY-MM-DD")}&to=${expenseQuery.to.format("YYYY-MM-DD")}&category=${
       expenseQuery.category
-    }&subCategory=${expenseQuery.subCategory}`;
+    }&tag=${expenseQuery.tag}`;
     return this.http.get<Expense[]>(endpoint);
   }
 }
