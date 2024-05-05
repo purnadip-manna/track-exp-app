@@ -36,7 +36,7 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     'date',
     'title',
     'category',
-    'subcategory',
+    'tag',
     'amount',
     'actions',
   ];

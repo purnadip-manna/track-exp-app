@@ -2,7 +2,7 @@ export default interface Expense {
   id: string,
   title: string
   category: string
-  subCategory: string
+  tag: string
   date: Date,
   amount: number,
   userId: string

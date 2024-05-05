@@ -8,27 +8,7 @@
   </div>
   <div class="category-container">
     @for (c of category; track c) {
-    <div class="category">
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-        "
-      >
-        <span class="mat-h2">{{ c.name }} </span>
-        <button mat-icon-button (click)="openEditForm(c)">
-          <mat-icon class="editBtn">edit</mat-icon>
-        </button>
-      </div>
-      <ul>
-        @for (sc of c.subCategory; track sc) {
-        <div>
-          <li>{{ sc }}</li>
-        </div>
-        }
-      </ul>
-    </div>
+      {{ c.name }}
     }
   </div>
 </div>
