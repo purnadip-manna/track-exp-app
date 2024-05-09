@@ -37,8 +37,8 @@ export class ExpenseService {
   filterExpense(expenseQuery: any): Observable<Expense[]> {
     let endpoint = `${
       this.API_URL
-    }/query?from=${expenseQuery.from.format("YYYY-MM-DD")}&to=${expenseQuery.to.format("YYYY-MM-DD")}&category=${
-      expenseQuery.category
+    }/query?from=${expenseQuery.from.format("YYYY-MM-DD")}&to=${expenseQuery.to.format("YYYY-MM-DD")}&categoryId=${
+      expenseQuery.categoryId
     }&tag=${expenseQuery.tag}`;
     return this.http.get<Expense[]>(endpoint);
   }
