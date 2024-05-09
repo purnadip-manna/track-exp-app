@@ -58,13 +58,12 @@ export const MY_FORMATS = {
 })
 export class FilterFormComponent {
   @Input() categories: Category[] = [];
-  subCategories: string[] = [];
 
   public maxDate = new Date();
   filterForm: FormGroup = new FormGroup({
     from: new FormControl(''),
     to: new FormControl(''),
-    category: new FormControl(''),
+    categoryId: new FormControl(''),
     tag: new FormControl(''),
   });
 

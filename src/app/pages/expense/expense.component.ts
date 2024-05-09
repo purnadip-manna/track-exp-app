@@ -67,6 +67,7 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
   loadData(): void {
     let to = moment();
     let from = moment().set('date', 1).set('month', to.month());
@@ -135,5 +136,10 @@ export class ExpenseComponent implements OnInit, AfterViewInit {
     let total = 0;
     this.dataSource.data.forEach((d) => (total += d.amount));
     return total;
+  }
+
+  getCategoryNameFromId(categoryId:string){
+    const category = this.categories.filter(c => c.id === categoryId);
+    return (category.length != 0)?category[0].name:"";
   }
 }

@@ -1,7 +1,7 @@
 export default interface Expense {
   id: string,
   title: string
-  category: string
+  categoryId: string
   tag: string
   date: Date,
   amount: number,

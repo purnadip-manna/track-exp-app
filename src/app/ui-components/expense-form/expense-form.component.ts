@@ -61,7 +61,7 @@ export class ExpenseFormComponent implements OnInit {
       Validators.required
     ),
     title: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
+    categoryId: new FormControl('', Validators.required),
     tag: new FormControl(''),
     amount: new FormControl('', Validators.required),
   });
@@ -73,7 +73,16 @@ export class ExpenseFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.fromParent) {
-      this.expenseForm.patchValue(this.fromParent);
+      console.log(this.fromParent);
+      const modifiedData = {
+        id:this.fromParent.id,
+        date:this.fromParent.date,
+        title: this.fromParent.title,
+        categoryId: this.fromParent.categoryId,
+        tag: this.fromParent.tag,
+        amount: this.fromParent.amount
+      }
+      this.expenseForm.patchValue(modifiedData);
     }
   }
 

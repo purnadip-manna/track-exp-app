@@ -23,10 +23,10 @@
 
     <mat-form-field appearance="outline">
       <mat-select
-        formControlName="category"
+        formControlName="categoryId"
       >
         @for (category of categories; track category) {
-        <mat-option value="{{ category.name }}">
+        <mat-option value="{{ category.id }}">
           {{ category.name }}
         </mat-option>
         }
