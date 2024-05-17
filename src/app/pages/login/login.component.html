@@ -1,8 +1,9 @@
-<div class="container">
+@if (applicationState.getIsMobileResolution()) {
+<div class="mobile-container">
   <div>
-    <img src="assets/logo.png" alt="logo" id="logo" />
+    <img src="{{ logo }}" alt="logo" id="mobile-logo" />
   </div>
-  <h1 class="large-text">Spy on your Spending 👀</h1>
+  <h1 class="large-text">{{ tagLine }}</h1>
   @if (!user) {
   <asl-google-signin-button
     type="standard"
@@ -14,9 +15,23 @@
   ></asl-google-signin-button>
   }
   <img src="assets/wallet.png" style="width: 18em" />
-  <div class="para">
-    Effortlessly manage your expenses with our intuitive application, providing
-    seamless tracking and insightful analytics to help you stay on top of your
-    finances.
-  </div>
+  <div class="mobile-description">{{ description }}</div>
 </div>
+} @else {
+<div class="container">
+  <img src="{{ logo }}" alt="logo" id="logo" />
+  <img src="assets/wallet.png" style="width: 26em; float: right" />
+  <h1>{{ tagLine }}</h1>
+  @if (!user) {
+  <asl-google-signin-button
+    type="standard"
+    size="large"
+    shape="circle"
+    text="signin_with"
+    [width]="400"
+    logo_alignment="center"
+  ></asl-google-signin-button>
+  }
+  <div class="description">{{ description }}</div>
+</div>
+}
