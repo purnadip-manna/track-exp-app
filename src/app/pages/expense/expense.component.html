@@ -1,9 +1,9 @@
 <app-loader [loadingStatus]="loading"></app-loader>
 <div class="dashboard-container">
   @if (platform.getIsMobileResolution()) {
-    <button mat-fab (click)="openForm()" class="add-btn" color="primary">
-      <mat-icon>add</mat-icon>
-    </button>
+  <button mat-fab (click)="openForm()" class="add-btn" color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
   }
   <div class="header">
     <h1 class="mat-h1">Expenses</h1>
@@ -21,12 +21,7 @@
       </button>
     </div>
   </div>
-  @if (!platform.getIsMobileResolution()) {
-  <span class="pill-badge">{{ fromDate }} - {{ toDate }} </span>
-  } @else {
   <div class="mobile-section-heading">{{ fromDate }} - {{ toDate }}</div>
-  }
-  <br />
   <br />
   <div class="table-container mat-elevation-z8">
     <mat-table [dataSource]="dataSource">
@@ -80,14 +75,13 @@
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let row">
           @if (platform.getIsMobileResolution()) {
-            <button mat-raised-button (click)="updateExpense(row)">
-              EDIT <mat-icon>edit</mat-icon>
-            </button>
-          }
-          @else {
-            <button mat-icon-button (click)="updateExpense(row)">
-              <mat-icon>edit</mat-icon>
-            </button>
+          <button mat-raised-button (click)="updateExpense(row)">
+            EDIT <mat-icon>edit</mat-icon>
+          </button>
+          } @else {
+          <button mat-icon-button (click)="updateExpense(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
           }
         </mat-cell>
       </ng-container>
