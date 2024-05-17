@@ -12,7 +12,9 @@
 }
 
 mat-header-cell {
-  font-size: 14px;
+  font-family: 'Poppins';
+  font-size: 16px;
+  font-weight: 600;
 }
 
 mat-table {
@@ -26,6 +28,7 @@ mat-table {
 
 @media (max-width: 600px) {
   .mobile-label {
+    font-family: 'Poppins';
     width: 80px;
     display: inline-block;
     font-weight: bold;
@@ -61,15 +64,6 @@ mat-table {
   text-align: right;
 }
 
-.pill-badge {
-  padding: 6px 12px 6px 12px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  font-size: 0.8em;
-  border-radius: 20px;
-  background: rgb(228, 241, 255);
-  font-weight: 500;
-}
-
 .add-btn {
   position: fixed;
   bottom: 10%;
@@ -81,4 +75,5 @@ mat-table {
   position: relative;
   margin-top: 16px;
   text-align: center;
+  font-weight: 600;
 }

@@ -66,7 +66,9 @@
         <mat-card-title> Last 3 Expenses </mat-card-title>
         @for (exp of lastThreeExpense; track exp) {
         <div class="expense-list-grid">
-          <div id="expense-title">{{ exp.title }}</div>
+          <div id="expense-title">
+            {{ getIconFromCategory(exp.categoryId) }} {{ exp.title }}
+          </div>
           <div id="expense-amount">₹ {{ exp.amount | number : "1.2" }}</div>
         </div>
         } @if (lastThreeExpense.length === 0) {

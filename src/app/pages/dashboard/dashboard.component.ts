@@ -7,7 +7,7 @@ import { ApplicationStateService } from '../../core/service/application-state/ap
 import { finalize, zip } from 'rxjs';
 import { Chart } from 'chart.js/auto';
 import { LoaderComponent } from '../../ui-components/loader/loader.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CategoryService } from '../../core/service/category/category.service';
+import Category from '../../types/Category';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,13 +32,14 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   loading: boolean = true;
+  categories: Category[] = [];
   name: string = '';
   colNumber: number = 3;
   card4Cols: number = 2;
@@ -70,6 +73,7 @@ export class DashboardComponent {
 
   constructor(
     private expenseService: ExpenseService,
+    private categoryService: CategoryService,
     private analyticsService: AnalyticsService,
     public platform: ApplicationStateService
   ) {
@@ -98,7 +102,8 @@ export class DashboardComponent {
         3
       ),
       this.analyticsService.getBarChartData(this.year),
-      this.analyticsService.getPieChartData(this.year, this.month)
+      this.analyticsService.getPieChartData(this.year, this.month),
+      this.categoryService.getCategories()
     )
       .pipe(
         finalize(() => {
@@ -108,7 +113,8 @@ export class DashboardComponent {
           this.createChart();
         })
       )
-      .subscribe(([data1, data2, data3, barData, pieData]) => {
+      .subscribe(([data1, data2, data3, barData, pieData, categories]) => {
+        this.categories = categories;
         this.todaysExpense = data1.totalAmount;
         this.expenseTillDate = data2.totalAmount;
         this.lastThreeExpense = data3;
@@ -226,5 +232,10 @@ export class DashboardComponent {
 
   applyMonthYear() {
     this.ngOnInit();
+  }
+
+  getIconFromCategory(categoryId: string): string {
+    const category = this.categories.filter((c) => c.id === categoryId);
+    return category.length != 0 ? category[0].icon : '';
   }
 }

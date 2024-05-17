@@ -29,3 +29,12 @@ input.example-right-align {
     width: fit-content;
   }
 }
+
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.category-icon{
+  font-size: 40px;
+}

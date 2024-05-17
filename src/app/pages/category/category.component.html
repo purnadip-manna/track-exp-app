@@ -8,7 +8,14 @@
   </div>
   <div class="category-container">
     @for (c of category; track c) {
+    <div class="category">
+      {{ c.icon }}
       {{ c.name }}
+      &nbsp;
+      <button mat-icon-button (click)="openEditForm(c)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
     }
   </div>
 </div>

@@ -1,10 +1,21 @@
 <form [formGroup]="categoryForm">
   <div class="form-container">
-    <h2 mat-dialog-title align="center">Add New Category</h2>
+    <h2 mat-dialog-title align="center">
+      {{ fromParent ? fromParent.name + " (Edit)" : "Add New Category" }}
+    </h2>
+    <div class="icon-container">
+      <span class="category-icon">
+        @if (fromParent) {
+          {{fromParent.icon}}
+        } @else {
+          <img src="assets/pie-chart.png" alt="category" height="50px" width="50px">
+        }
+      </span>
+    </div>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Category Name</mat-label>
-      <input matInput formControlName="name" />
+      <input matInput formControlName="name"/>
     </mat-form-field>
 
     <div mat-dialog-actions>
