@@ -1,5 +1,34 @@
 .container{
-  margin: 2rem;
+  display: flex;
+  align-items: center;
+  margin: 0px auto 0px auto;
+  height: 90vh;
+  width: 80%;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.left{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  flex-basis: 70%;
+  height: 100%;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  flex-basis: 30%;
+}
+
+.wallet-img{
+  margin-top: -1rem;
+  transform: scale(0.8);
 }
 
 .mobile-container {
@@ -16,7 +45,7 @@
 }
 
 .description{
-  font-size: 2em;
+  // font-size: 2em;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
