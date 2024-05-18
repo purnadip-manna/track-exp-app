@@ -27,7 +27,7 @@
   <div class="mobile-section-heading">Last Three Expenses</div>
   @for (exp of lastThreeExpense; track exp) {
   <div class="expense-list-grid" style="background: #fff">
-    <div id="expense-title">{{ exp.title }}</div>
+    <div id="expense-title">{{ getIconFromCategory(exp.categoryId) }} {{ exp.title }}</div>
     <div id="expense-amount">₹ {{ exp.amount | number : "1.2" }}</div>
   </div>
   }
