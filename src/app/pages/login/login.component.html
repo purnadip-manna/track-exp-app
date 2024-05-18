@@ -19,19 +19,23 @@
 </div>
 } @else {
 <div class="container">
-  <img src="{{ logo }}" alt="logo" id="logo" />
-  <img src="assets/wallet.png" style="width: 26em; float: right" />
-  <h1>{{ tagLine }}</h1>
-  @if (!user) {
-  <asl-google-signin-button
-    type="standard"
-    size="large"
-    shape="circle"
-    text="signin_with"
-    [width]="400"
-    logo_alignment="center"
-  ></asl-google-signin-button>
-  }
-  <div class="description">{{ description }}</div>
+  <div class="left">
+    <img src="{{ logo }}" alt="logo" id="logo" />
+    <h1>{{ tagLine }}</h1>
+    @if (!user) {
+    <asl-google-signin-button
+      type="standard"
+      size="large"
+      shape="circle"
+      text="signin_with"
+      [width]="400"
+      logo_alignment="center"
+    ></asl-google-signin-button>
+    }
+    <div class="description">{{ description }}</div>
+  </div>
+  <div class="right">
+    <img src="assets/wallet.png" class="wallet-img" />
+  </div>
 </div>
 }
